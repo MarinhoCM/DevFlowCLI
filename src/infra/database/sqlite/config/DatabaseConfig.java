@@ -31,7 +31,6 @@ public class DatabaseConfig {
 
         try (Connection conn = this.getConnection(); Statement stmt = conn.createStatement();) {
             stmt.execute(createTableQuery);
-            conn.close();
         } catch (SQLException err) {
             throw new RuntimeException("Erro ao inicializar banco de dados:\n", err);
         }
