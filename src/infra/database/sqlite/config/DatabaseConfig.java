@@ -1,16 +1,16 @@
 package infra.database.sqlite.config;
 
-import infra.database.sqlite.DatabaseService;
+import infra.database.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConfig {
 
-    private final DatabaseService databaseService;
+    private final ConnectionFactory databaseService;
 
     public DatabaseConfig() {
-        this.databaseService = new DatabaseService();
+        this.databaseService = new ConnectionFactory();
     }
 
     public Connection getConnection() throws SQLException {
