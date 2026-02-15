@@ -73,4 +73,12 @@ public class Task {
         this.updated_at = updated_at;
     }
 
+    public String toDisplay() {
+        return "[%d] %s %s".formatted(
+                id,
+                title,
+                done == 1 ? "✔" : "✘"
+        );
+    }
+
 }
