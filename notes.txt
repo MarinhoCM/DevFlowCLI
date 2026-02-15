@@ -1,0 +1,1 @@
+PARA EXIBIÇÃO DE EMOJIS lançar o commando `chcp 65001` no CMD
