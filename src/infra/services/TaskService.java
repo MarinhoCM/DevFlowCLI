@@ -84,4 +84,20 @@ public class TaskService {
 
         return "Task com ID %d concluída com sucesso, parabéns dev! \uD83C\uDF89".formatted(id);
     }
+
+    public String removeTask(int id) {
+        List<Task> queryResult = this.taskRepository.getOne("id", id);
+
+        if (queryResult.isEmpty()) {
+            return String.format("Task com Id: %d não encontrada.", id);
+        }
+
+        Task task = queryResult.get(0);
+
+        this.taskRepository.remove(task.getId());
+
+        return "Task com ID %d removida com sucesso!"
+                .formatted(id);
+
+    }
 }

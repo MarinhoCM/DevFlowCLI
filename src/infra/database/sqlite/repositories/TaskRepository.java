@@ -128,4 +128,9 @@ public class TaskRepository {
         return result.isEmpty() ? 0 : result.get(0);
     }
 
+    public int remove(int id) {
+        String sql = "DELETE FROM tasks WHERE id = ?";
+        return executeUpdate(sql, id);
+    }
+
 }

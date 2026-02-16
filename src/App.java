@@ -1,7 +1,9 @@
 
 import common.commands.AddTaskCommand;
 import common.commands.DoneTaskCommand;
+import common.commands.HelpCommand;
 import common.commands.ListTasksCommand;
+import common.commands.RemoveTaskCommand;
 import infra.database.sqlite.config.DatabaseConfig;
 import java.util.Arrays;
 import java.util.List;
@@ -30,7 +32,6 @@ public class App {
 
         switch (command) {
             case "add":
-
                 if (args.size() < 3) {
                     System.out.println("Uso: add \"title\" \"description\"");
                     return 1;
@@ -73,7 +74,19 @@ public class App {
                 }
 
                 return 1;
+
+            case "remove":
+                try {
+                    int id = Integer.parseInt(args.get(1));
+                    new RemoveTaskCommand().execute(id);
+                } catch (NumberFormatException e) {
+                    System.out.println("Id deve ser um número.");
+                    return 1;
+                }
+
+                return 1;
             case "--help":
+                HelpCommand.execute();
                 return 1;
             default:
                 System.out.println("Comando inválido.");
