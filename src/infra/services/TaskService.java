@@ -71,7 +71,7 @@ public class TaskService {
         List<Task> queryResult = this.taskRepository.getOne("id", id);
 
         if (queryResult.isEmpty()) {
-            return String.format("Task com Id: %d não encontrada 👀", id);
+            return String.format("Task com Id: %d não encontrada \"\uD83D\uDC40\"\n", id);
         }
 
         Task task = queryResult.get(0);
