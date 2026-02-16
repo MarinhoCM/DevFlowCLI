@@ -14,6 +14,33 @@ public class TaskService {
         this.taskRepository = new TaskRepository();
     }
 
+    private String formatMultiline(String text, int tableWidth) {
+
+        int contentWidth = tableWidth - 4;
+        StringBuilder result = new StringBuilder();
+
+        while (text.length() > contentWidth) {
+
+            int breakIndex = contentWidth;
+
+            int lastSpace = text.lastIndexOf(" ", contentWidth);
+            if (lastSpace > 0) {
+                breakIndex = lastSpace;
+            }
+
+            String line = text.substring(0, breakIndex);
+            result.append(String.format("| %-"
+                    + contentWidth + "s |\n", line));
+
+            text = text.substring(breakIndex).trim();
+        }
+
+        result.append(String.format("| %-"
+                + contentWidth + "s |", text));
+
+        return result.toString();
+    }
+
     public String getAllTasks(int page, int pageSize) {
 
         String header = String.format(
@@ -98,6 +125,36 @@ public class TaskService {
 
         return "Task com ID %d removida com sucesso!"
                 .formatted(id);
-
     }
+
+    public String showTask(int id) {
+
+        List<Task> queryResult = this.taskRepository.getOne("id", id);
+
+        if (queryResult.isEmpty()) {
+            return String.format("Task com Id: %d não encontrada.", id);
+        }
+
+        Task task = queryResult.get(0);
+
+        String header = String.format(
+                "| %-4s | %-25s | %-10s |",
+                "ID", "TITLE", "STATUS"
+        );
+
+        String separator = "-".repeat(header.length());
+
+        String taskInfo = TaskFormatter.toDisplay(task);
+
+        String body = formatMultiline(task.getDescription(), header.length());
+
+        return separator + "\n"
+                + header + "\n"
+                + separator + "\n"
+                + taskInfo + "\n"
+                + separator + "\n"
+                + body + "\n"
+                + separator + "\n";
+    }
+
 }

@@ -4,6 +4,7 @@ import common.commands.DoneTaskCommand;
 import common.commands.HelpCommand;
 import common.commands.ListTasksCommand;
 import common.commands.RemoveTaskCommand;
+import common.commands.ShowTaskCommand;
 import infra.database.sqlite.config.DatabaseConfig;
 import java.util.Arrays;
 import java.util.List;
@@ -79,6 +80,23 @@ public class App {
                 try {
                     int id = Integer.parseInt(args.get(1));
                     new RemoveTaskCommand().execute(id);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Id deve ser informado.");
+                    return 1;
+                } catch (NumberFormatException e) {
+                    System.out.println("Id deve ser um número.");
+                    return 1;
+                }
+
+                return 1;
+
+            case "show":
+                try {
+                    int id = Integer.parseInt(args.get(1));
+                    new ShowTaskCommand().execute(id);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("Id deve ser informado.");
+                    return 1;
                 } catch (NumberFormatException e) {
                     System.out.println("Id deve ser um número.");
                     return 1;
