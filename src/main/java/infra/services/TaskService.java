@@ -1,10 +1,11 @@
 package infra.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import common.formatter.TaskFormatter;
 import infra.database.sqlite.models.Task;
 import infra.database.sqlite.repositories.TaskRepository;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class TaskService {
 

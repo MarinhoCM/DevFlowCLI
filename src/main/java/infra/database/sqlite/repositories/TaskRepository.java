@@ -1,14 +1,15 @@
 package infra.database.sqlite.repositories;
 
-import common.mapper.ResultSetMapper;
-import infra.database.ConnectionFactory;
-import infra.database.sqlite.models.Task;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import common.mapper.ResultSetMapper;
+import infra.database.ConnectionFactory;
+import infra.database.sqlite.models.Task;
 
 public class TaskRepository {
 

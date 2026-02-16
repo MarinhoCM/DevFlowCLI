@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.List;
 
 import common.commands.AddTaskCommand;
 import common.commands.DoneTaskCommand;
@@ -6,8 +8,6 @@ import common.commands.ListTasksCommand;
 import common.commands.RemoveTaskCommand;
 import common.commands.ShowTaskCommand;
 import infra.database.sqlite.config.DatabaseConfig;
-import java.util.Arrays;
-import java.util.List;
 
 public class App {
 
